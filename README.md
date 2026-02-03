@@ -46,8 +46,8 @@ A detailed test plan for the Checkout Flow is available in:
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/sauce-demo.git
-cd sauce-demo
+git clone https://github.com/Incendio03/gemuel-cornillez-assessment.git
+cd gemuel-cornillez-assessment
 npm install
 npx playwright install
 ```
@@ -58,57 +58,80 @@ npx playwright install
 
 ### Run All Tests
 
-Run all tests in headless mode (recommended for CI/CD):
-
 ```bash
+# Headless mode (CI/CD)
 npm test
-# or
-npx playwright test
+
+# Headed mode (watch browser)
+npm run test:headed
+
+# Interactive UI mode
+npm run test:ui
+
+# Debug mode
+npm run test:debug
 ```
 
 ### Run Specific Test Suites
 
 ```bash
-# Checkout flow tests only
-npx playwright test checkout.spec.js
-
-# Visual validation tests
-npx playwright test visual-validation.spec.js
+# Checkout flow tests
+npm run test:checkout              # headless
+npm run test:checkout:headed       # headed
 
 # Mobile responsiveness tests
-npx playwright test mobile-responsiveness.spec.js
+npm run test:mobile                # headless
+npm run test:mobile:headed         # headed
 
-# Run only on Chromium
-npm run test:chromium
-
-# Run mobile tests only
-npm run test:mobile
+# Visual validation tests
+npm run test:visual                # headless
+npm run test:visual:headed         # headed
 ```
 
-### Interactive Testing
-
-Run tests in interactive UI mode:
+### Run on Specific Browsers
 
 ```bash
-npm run test:ui
-# or
-npx playwright test --ui
+# Chromium (all tests)
+npm run test:chromium              # headless
+npm run test:chromium:headed       # headed
+
+# Mobile Safari (all tests)
+npm run test:mobile-safari         # headless
+npm run test:mobile-safari:headed  # headed
 ```
 
-Run in headed mode (see browser):
+### Run Specific Suite on Specific Browser
 
 ```bash
-npm run test:headed
-# or
-npx playwright test --headed
+# Checkout on Chromium
+npm run test:checkout:chromium              # headless
+npm run test:checkout:chromium:headed       # headed
+
+# Mobile on Chromium
+npm run test:mobile:chromium                # headless
+npm run test:mobile:chromium:headed         # headed
+
+# Visual on Chromium
+npm run test:visual:chromium                # headless
+npm run test:visual:chromium:headed         # headed
 ```
 
-Debug a specific test:
+### Advanced Playwright Commands
 
 ```bash
-npm run test:debug
+# Run specific test file
+npx playwright test checkout.spec.js
+
+# Run with specific project
+npx playwright test --project=chromium
+
+# Run tests matching pattern
+npx playwright test --grep "checkout"
+
+# Show test report
+npm run test:report
 # or
-npx playwright test --debug
+npx playwright show-report
 ```
 
 ### View Test Reports
