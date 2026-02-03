@@ -3,7 +3,32 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    
+    "test:checkout": "playwright test checkout.spec.js",
+    "test:checkout:headed": "playwright test checkout.spec.js --headed",
+    "test:mobile": "playwright test mobile-responsiveness.spec.js",
+    "test:mobile:headed": "playwright test mobile-responsiveness.spec.js --headed",
+    "test:visual": "playwright test visual-validation.spec.js",
+    "test:visual:headed": "playwright test visual-validation.spec.js --headed",
+    
+    "test:chromium": "playwright test --project=chromium",
+    "test:chromium:headed": "playwright test --project=chromium --headed",
+    "test:mobile-safari": "playwright test --project='Mobile Safari'",
+    "test:mobile-safari:headed": "playwright test --project='Mobile Safari' --headed",
+    
+    "test:checkout:chromium": "playwright test checkout.spec.js --project=chromium",
+    "test:checkout:chromium:headed": "playwright test checkout.spec.js --project=chromium --headed",
+    "test:mobile:chromium": "playwright test mobile-responsiveness.spec.js --project=chromium",
+    "test:mobile:chromium:headed": "playwright test mobile-responsiveness.spec.js --project=chromium --headed",
+    "test:visual:chromium": "playwright test visual-validation.spec.js --project=chromium",
+    "test:visual:chromium:headed": "playwright test visual-validation.spec.js --project=chromium --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
