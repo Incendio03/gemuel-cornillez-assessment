@@ -34,7 +34,7 @@ A detailed test plan for the Checkout Flow is available in:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -53,63 +53,6 @@ npx playwright install
 ```
 
 ---
-
-## 🔐 Session Injection Mechanism (Programmatic Login)
-
-### How It Works
-
-SauceDemo stores authentication state in **Cookies** under the key `session-username`. Instead of interacting with the login UI for every test, we inject this session directly into the browser context.
-
-**Step-by-Step Process:**
-
-1. **Inject session cookie** - Add `session-username` cookie to browser context
-2. **Navigate to protected page** - Go to `/inventory.html` directly
-3. **Application recognizes authentication** - User is logged in without UI interaction
-
-**Implementation Location:** [utils/auth.js](utils/auth.js)
-
-```javascript
-export async function injectSession(page, username = "standard_user") {
-  await page.context().addCookies([
-    {
-      name: "session-username",
-      value: username,
-      domain: "www.saucedemo.com",
-      path: "/",
-      httpOnly: false,
-      secure: false,
-      sameSite: "Lax",
-    },
-  ]);
-}
-```
-
-**Benefits:**
-
-- **10x faster** than UI login (~500ms vs 5s per test)
-- **Reduces flakiness** - No form interactions, network delays, or element wait times
-- **CI/CD optimized** - Parallel execution without login bottlenecks
-
-**Trade-offs:**
-
-- **No login UI coverage** - Requires separate smoke test
-- **Session mechanism dependency** - Tests break if Cookies structure changes
-
-### Reverse Engineering Process
-
-To discover the session mechanism:
-
-1. Open DevTools → Application Tab → Cookies
-2. Login manually via UI
-3. Observe `session-username` key being set
-4. Clear cookies and refresh → redirected to login
-5. Manually set `session-username` → access to protected pages restored
-
-This confirms SauceDemo uses client-side Cookies for authentication, making programmatic injection viable.
-
----
-
-## Running the Tests
 
 ## Running the Tests
 
